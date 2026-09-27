@@ -1,0 +1,29 @@
+{
+  "format_on_save": "on",
+  "formatter": {
+    "external": {
+      "command": "prettier",
+      "arguments": ["--stdin-filepath", "{buffer_path}"]
+    }
+  },
+  "languages": {
+    "JavaScript": {
+      "format_on_save": "on"
+    },
+    "JSX": {
+      "format_on_save": "on"
+    },
+    "JSON": {
+      "format_on_save": "on"
+    },
+    "CSS": {
+      "format_on_save": "on"
+    },
+    "HTML": {
+      "format_on_save": "on"
+    },
+    "Markdown": {
+      "format_on_save": "on"
+    }
+  }
+}
