@@ -1,121 +1,77 @@
 import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
 import './App.css'
 
+// these constants are important states for the app
+// represent the lifecycle of the app
+// If you need to edit them, please do so with care
+
+const STATUSES = {
+  loading: 0,
+  error: 1,
+  ready: 2,
+  active: 3,
+  finished: 4,
+}
+
+const REDUCER_TYPES = {
+  dataReceived: 'dataReceived',
+  dataFailed: 'dataFailed',
+  start: 'start',
+  newAnswer: 'newAnswer',
+  nextQuestion: 'nextQuestion',
+  finish: 'finish',
+}
+
+const SECONDS_PER_QUESTION = 30
+const initialState = {
+  questions: [],
+  // 'loading', 'error', 'ready', 'active', 'finished'
+  status: STATUSES.loading,
+  index: 0,
+  answer: null,
+  points: 0,
+  highscore: 0,
+  secondsRemaining: null,
+}
+
+/**
+ * @param state {{count: number, step: number}}
+ * @param action {{type: keyof typeof REDUCER_TYPES, payload: number}}
+ * @description - Reducer function for useReducer. **This is the heart of the app**
+ */
+function reducer(state, action) {
+  switch (action.type) {
+    case REDUCER_TYPES.dataReceived:
+      return {
+        ...state,
+        questions: action.payload,
+        status: STATUSES.ready,
+      }
+    case REDUCER_TYPES.dataFailed:
+      return { ...state, status: STATUSES.error }
+    case REDUCER_TYPES.start:
+      return {
+        ...state,
+        status: STATUSES.active,
+        secondsRemaining: state.questions.length * SECONDS_PER_QUESTION,
+      }
+    default:
+      throw new Error('unknown action')
+  }
+}
+
 function App() {
-  const [count, setCount] = useState(0)
+  const [status, setStatus] = useState(0)
+  const [questions, setQuestions] = useState([])
+  const maxPossibleQuestions = questions.reduce(
+    (prev, curr) => prev + curr.points,
+    0
+  )
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
-
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+    <div className="App">
+      <main className="main">Hello, world!</main>
+    </div>
   )
 }
 
