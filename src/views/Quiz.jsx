@@ -69,7 +69,7 @@ function reducer(state, action) {
   }
 }
 
-function App() {
+function Quiz() {
   const [{ questions, status }, dispatch] = useReducer(reducer, initialState)
   const maxPossibleQuestions = questions.reduce(
     (prev, curr) => prev + curr.points,
@@ -98,4 +98,4 @@ function App() {
   )
 }
 
-export default App
+export default Quiz
