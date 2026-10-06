@@ -37,17 +37,31 @@ body {
   justify-content: center;
 }
 
-.main {
-  width: 50rem;
+.landing .main {
+  width: 100%;
+  max-width: 60rem;
   padding: 3.2rem;
 }
 
+.main-full {
+  width: 100%;
+  max-width: none;
+}
+
 .app-header {
-  width: 66rem;
-  margin-bottom: 4rem;
+  width: 100%;
+  max-width: 60rem;
+  margin: 0;
+  padding: 1rem 1.5rem;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 1.2rem;
+  justify-content: center;
+  position: sticky;
+  top: 0;
+  background-color: var(--color-darkest);
+  z-index: 100;
+  border-bottom: 1px solid var(--color-dark);
 }
 
 .error {
@@ -60,12 +74,16 @@ body {
 }
 
 .app-header img.header-logo {
-  width: 14rem;
+  width: 5rem;
+  height: auto;
+  flex-shrink: 0; /* No se encoje el logo al reducir la pantalla */
 }
 
 h1 {
   font-family: 'Codystar';
-  font-size: 5.6rem;
+  font-size: 2.5rem;
+  margin: 0;
+  white-space: nowrap; /* Evita que el texto se divida en varias líneas */
 }
 
 h2 {
@@ -278,20 +296,30 @@ progress {
   min-height: 100vh;
 }
 
+.layout-full {
+  width: 100%;
+  max-width: none;
+  align-self: stretch;
+}
+
 .nav {
   display: flex;
-  gap: 1.6rem;
+  gap: 1.2rem;
   justify-content: center;
-  padding: 1.6rem 0;
+  padding: 1rem 0;
   border-bottom: 1px solid var(--color-dark);
-  margin-bottom: 3.2rem;
+  margin-bottom: 2rem;
+  position: sticky;
+  top: 7rem;
+  z-index: 99;
+  background-color: var(--color-darkest);
 }
 
 .nav-link {
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   color: var(--color-medium);
   text-decoration: none;
-  padding: 0.8rem 1.2rem;
+  padding: 0.6rem 1rem;
   border-radius: 8px;
   transition: 0.2s;
 }
@@ -308,43 +336,52 @@ progress {
   align-items: center;
   justify-content: center;
   padding: 4rem 2rem;
+  min-height: 100vh;
+  flex-direction: column;
 }
 
 .landing-hero {
   text-align: center;
   max-width: 60rem;
+  width: 100%;
 }
 
 .landing-hero img {
-  width: 6rem;
-  margin-bottom: 2rem;
+  width: 5rem;
+  margin-bottom: 1.5rem;
 }
 
 .landing-hero h1 {
   font-family: 'Codystar';
-  font-size: 5.6rem;
-  margin-bottom: 1.6rem;
+  font-size: 4rem;
+  margin-bottom: 1rem;
 }
 
 .landing-hero p {
-  font-size: 2rem;
+  font-size: 1.6rem;
   color: var(--color-medium);
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
 }
 
 .landing-cards {
   display: flex;
-  gap: 2.4rem;
+  gap: 2rem;
   justify-content: center;
   flex-wrap: wrap;
+  margin-top: 1rem;
 }
 
 .landing-card {
   background: var(--color-dark);
   border: 2px solid var(--color-dark);
   border-radius: 16px;
-  padding: 3.2rem;
-  min-width: 22rem;
+  min-width: 20rem;
+  flex: 1;
+  height: 10rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem;
   text-decoration: none;
   color: var(--color-light);
   transition: 0.3s;
@@ -357,11 +394,163 @@ progress {
 }
 
 .landing-card h3 {
-  font-size: 2.4rem;
-  margin-bottom: 0.8rem;
+  font-size: 2rem;
+  margin-bottom: 0.6rem;
 }
 
 .landing-card p {
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   color: var(--color-medium);
+}
+
+.learn {
+  display: grid;
+  grid-template-columns: minmax(260px, 22vw) 1fr;
+  gap: 3rem;
+  padding: 2rem 0;
+  min-height: 100vh;
+  justify-self: start;
+  width: 100%;
+  max-width: none;
+}
+
+.learn-sidebar {
+  position: sticky;
+  top: 120px;
+  height: fit-content;
+  max-height: calc(100vh - 140px);
+  overflow-y: auto;
+  border-right: 1px solid var(--color-dark);
+  padding-right: 1.5rem;
+}
+
+.sidebar-link {
+  display: block;
+  padding: 0.4rem 0.8rem;
+  font-size: 1rem;
+  color: var(--color-medium);
+  text-decoration: none;
+  border-radius: 6px;
+  transition: 0.2s;
+  border-left: 3px solid transparent;
+  margin-bottom: 0.1rem;
+}
+
+.sidebar-link:hover,
+.sidebar-link.active {
+  color: var(--color-theme);
+  background: var(--color-dark);
+  border-left-color: var(--color-theme);
+}
+
+.learn-content {
+  max-width: 800px;
+}
+
+.learn-section {
+  margin-bottom: 3rem;
+}
+
+.learn-section h2 {
+  font-size: 2rem;
+  margin-bottom: 1.4rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--color-dark);
+}
+
+.markdown-content {
+  font-size: 1.2rem;
+  line-height: 1.75;
+  color: var(--color-light);
+}
+
+.markdown-content h3 {
+  font-size: 1.2rem;
+  margin: 1.4rem 0 0.6rem;
+  color: var(--color-theme);
+}
+.markdown-content h4 {
+  font-size: 1rem;
+  margin: 1rem 0 0.6rem;
+}
+.markdown-content p {
+  margin-bottom: 7rem;
+}
+.markdown-content ul,
+.markdown-content ol {
+  margin: 0.8rem 0 0.8rem 1.8rem;
+}
+.markdown-content li {
+  margin-bottom: 0.4rem;
+}
+.markdown-content code {
+  background: var(--color-dark);
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+.markdown-content pre {
+  background: var(--color-darkest);
+  padding: 1.2rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+.markdown-content pre code {
+  background: none;
+  padding: 0;
+}
+.markdown-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 1.2rem;
+}
+.markdown-content th,
+.markdown-content td {
+  border: 1px solid var(--color-dark);
+  padding: 0.8rem;
+  text-align: left;
+}
+.markdown-content th {
+  background: var(--color-dark);
+  font-weight: 600;
+}
+.markdown-content blockquote {
+  border-left: 3px solid var(--color-theme);
+  padding-left: 1rem;
+  margin: 1.5rem 0;
+  color: var(--color-medium);
+  font-style: italic;
+}
+.markdown-content strong {
+  font-weight: 600;
+}
+.markdown-content em {
+  font-style: italic;
+}
+
+/* Responsive para learn */
+@media (max-width: 900px) {
+  .learn {
+    grid-template-columns: 1fr;
+  }
+  .learn-sidebar {
+    position: static;
+    max-height: none;
+    border-right: none;
+    border-bottom: 1px solid var(--color-dark);
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
+    padding-right: 0;
+  }
+  .learn-sidebar nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .sidebar-link {
+    font-size: 1.2rem;
+    padding: 0.4rem 0.8rem;
+  }
 }

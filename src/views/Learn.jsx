@@ -1,10 +1,30 @@
-// Placeholder for the Learn page. This will be replaced with the actual Learn page content
+import { learnSections } from '../data/learnSections.jsx'
 
 export default function Learn() {
   return (
-    <div className="page-placeholder">
-      <h2>Learn React</h2>
-      <p>Idea: Sidebar + content</p>
+    <div className="learn">
+      <aside className="learn-sidebar">
+        <nav>
+          {learnSections.map((sect) => (
+            <a
+              key={sect.id}
+              href={`#${sect.id}`}
+              className="sidebar-link"
+              data-section={sect.id}
+            >
+              {sect.title}
+            </a>
+          ))}
+        </nav>
+      </aside>
+      <article className="learn-content">
+        {learnSections.map((sect) => (
+          <section key={sect.id} id={sect.id} className="learn-section">
+            <h2>{sect.title}</h2>
+            <div className="markdown-content">{sect.content}</div>
+          </section>
+        ))}
+      </article>
     </div>
   )
 }

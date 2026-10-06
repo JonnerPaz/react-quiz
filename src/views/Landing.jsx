@@ -6,6 +6,7 @@ export default function Landing() {
       <section className="landing-hero">
         <img src="logo512.png" alt="React logo" />
         <h1>The React Quiz</h1>
+        <br></br>
         <p>Aprende React y pon a prueba tus conocimientos</p>
         <div className="landing-cards">
           <Link to="/learn" className="landing-card">
