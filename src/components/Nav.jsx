@@ -1,26 +1,34 @@
 import { NavLink } from 'react-router-dom'
 
+const routes = [
+  {
+    to: '/',
+    name: 'Inicio',
+  },
+  {
+    to: '/learn',
+    name: 'Aprender React',
+  },
+  {
+    to: '/quiz',
+    name: 'Quiz',
+  },
+]
+
 export default function Nav() {
   return (
     <nav className="nav">
-      <NavLink
-        to="/"
-        className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
-      >
-        Inicio
-      </NavLink>
-      <NavLink
-        to="/learn"
-        className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
-      >
-        Aprender React
-      </NavLink>
-      <NavLink
-        to="/quiz"
-        className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
-      >
-        Quiz
-      </NavLink>
+      {routes.map((route) => (
+        <NavLink
+          key={route.to}
+          to={route.to}
+          className={({ isActive }) =>
+            isActive ? 'nav-link active' : 'nav-link'
+          }
+        >
+          {route.name}
+        </NavLink>
+      ))}
     </nav>
   )
 }
