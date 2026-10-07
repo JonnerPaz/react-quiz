@@ -3,6 +3,7 @@ import Layout from './components/Layout'
 import Landing from './views/Landing.jsx'
 import Learn from './views/Learn.jsx'
 import Quiz from './views/Quiz.jsx'
+import NotFound from './views/NotFound.jsx'
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
         <Route path="/learn" element={<Learn />} />
         <Route path="/quiz" element={<Quiz />} />
       </Route>
-      <Route path="*" element={<div>404 - Not Found</div>} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   )
 }

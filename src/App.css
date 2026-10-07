@@ -45,7 +45,6 @@ body {
 
 .app-header {
   width: 100%;
-  max-width: 60rem;
   margin: 0 auto;
   padding: 1rem 1.5rem;
   display: flex;
@@ -581,4 +580,105 @@ progress {
   width: 100%;
   max-width: none;
   text-align: left;
+}
+
+/* Not Found page */
+.not-found {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(2rem, 4vw, 4rem) clamp(1.6rem, 3vw, 2.4rem);
+  min-height: 100vh;
+  text-align: center;
+}
+
+.not-found-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 60rem;
+  width: 100%;
+}
+
+.not-found-logo {
+  width: clamp(5.6rem, 8vw, 7.2rem);
+  height: auto;
+  margin-bottom: 2rem;
+  animation: rotateLogo 20s linear infinite;
+}
+
+@keyframes rotateLogo {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.not-found-badge {
+  font-family: 'Codystar', sans-serif;
+  font-size: clamp(4rem, 6vw, 6.4rem);
+  font-weight: 700;
+  color: var(--color-accent);
+  letter-spacing: 0.2rem;
+  margin-bottom: 1rem;
+  line-height: 1.1;
+}
+
+.not-found-title {
+  font-size: clamp(2rem, 2.6vw, 2.8rem);
+  margin-bottom: 1.2rem;
+  color: var(--color-light);
+  white-space: normal;
+}
+
+.not-found-description {
+  font-size: clamp(1.4rem, 1.2vw, 1.6rem);
+  color: var(--color-medium);
+  line-height: 1.6;
+  margin-bottom: 3.2rem;
+  max-width: 48rem;
+}
+
+.not-found-actions {
+  display: flex;
+  gap: 1.4rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.not-found-btn {
+  text-decoration: none;
+  font-size: clamp(1.3rem, 1.1vw, 1.5rem);
+  padding: 1rem 2.2rem;
+  border-radius: 10rem;
+  background-color: var(--color-dark);
+  color: var(--color-light);
+  border: 0.2rem solid var(--color-dark);
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.not-found-btn:hover {
+  background-color: var(--color-darkest);
+  border-color: var(--color-theme);
+  color: var(--color-theme);
+  transform: translateY(-0.2rem);
+}
+
+.not-found-btn-primary {
+  background-color: var(--color-theme);
+  border-color: var(--color-theme);
+  color: var(--color-light);
+}
+
+.not-found-btn-primary:hover {
+  background-color: #0b7285;
+  border-color: #0b7285;
+  color: var(--color-light);
 }
