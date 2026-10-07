@@ -43,11 +43,6 @@ body {
   padding: 3.2rem;
 }
 
-.main-full {
-  width: 100%;
-  max-width: none;
-}
-
 .app-header {
   width: 100%;
   max-width: 60rem;
@@ -296,12 +291,6 @@ progress {
   min-height: 100vh;
 }
 
-.layout-full {
-  width: 100%;
-  max-width: none;
-  align-self: stretch;
-}
-
 .nav {
   display: flex;
   gap: 1.2rem;
@@ -409,9 +398,6 @@ progress {
   gap: 3rem;
   padding: 2rem 0;
   min-height: 100vh;
-  justify-self: start;
-  width: 100%;
-  max-width: none;
 }
 
 .learn-sidebar {
@@ -553,4 +539,16 @@ progress {
     font-size: 1.2rem;
     padding: 0.4rem 0.8rem;
   }
+}
+
+/* Page-learn overrides: force left-aligned layout */
+.page-learn #root {
+  width: 100%;
+  max-width: none;
+  text-align: left;
+}
+
+.page-learn .app {
+  align-items: flex-start;
+  justify-content: flex-start;
 }
