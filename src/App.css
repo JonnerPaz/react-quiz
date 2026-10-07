@@ -46,7 +46,7 @@ body {
 .app-header {
   width: 100%;
   max-width: 60rem;
-  margin: 0;
+  margin: 0 auto;
   padding: 1rem 1.5rem;
   display: flex;
   align-items: center;
@@ -394,32 +394,36 @@ progress {
 
 .learn {
   display: grid;
-  grid-template-columns: minmax(260px, 22vw) 1fr;
-  gap: 3rem;
-  padding: 2rem 0;
+  grid-template-columns: clamp(20rem, 24vw, 28rem) minmax(0, 1fr);
+  gap: clamp(1.6rem, 3vw, 3.2rem);
+  padding: clamp(1.6rem, 2.5vw, 3rem) clamp(1.2rem, 3vw, 3.6rem);
+  width: 100%;
+  max-width: 120rem;
+  margin: 0 auto;
   min-height: 100vh;
 }
 
 .learn-sidebar {
   position: sticky;
-  top: 120px;
+  top: 12rem;
   height: fit-content;
-  max-height: calc(100vh - 140px);
+  max-height: calc(100vh - 14rem);
   overflow-y: auto;
-  border-right: 1px solid var(--color-dark);
-  padding-right: 1.5rem;
+  border-right: 0.1rem solid var(--color-dark);
+  padding-right: 1.6rem;
 }
 
 .sidebar-link {
   display: block;
-  padding: 0.4rem 0.8rem;
-  font-size: 1rem;
+  padding: 0.8rem 1.2rem;
+  font-size: clamp(1.2rem, 1.1vw, 1.4rem);
+  line-height: 1.4;
   color: var(--color-medium);
   text-decoration: none;
-  border-radius: 6px;
+  border-radius: 0.6rem;
   transition: 0.2s;
-  border-left: 3px solid transparent;
-  margin-bottom: 0.1rem;
+  border-left: 0.3rem solid transparent;
+  margin-bottom: 0.4rem;
 }
 
 .sidebar-link:hover,
@@ -430,125 +434,151 @@ progress {
 }
 
 .learn-content {
-  max-width: 800px;
+  width: 100%;
+  min-width: 0;
+  max-width: 85rem;
 }
 
 .learn-section {
-  margin-bottom: 3rem;
+  margin-bottom: 3.6rem;
 }
 
 .learn-section h2 {
-  font-size: 2rem;
+  font-size: clamp(2.2rem, 2.4vw, 2.8rem);
   margin-bottom: 1.4rem;
   padding-bottom: 0.6rem;
-  border-bottom: 1px solid var(--color-dark);
+  border-bottom: 0.1rem solid var(--color-dark);
 }
 
 .markdown-content {
-  font-size: 1.2rem;
-  line-height: 1.75;
+  font-size: clamp(1.3rem, 1.1vw, 1.5rem);
+  line-height: 1.7;
   color: var(--color-light);
 }
 
 .markdown-content h3 {
-  font-size: 1.2rem;
-  margin: 1.4rem 0 0.6rem;
+  font-size: clamp(1.6rem, 1.5vw, 1.9rem);
+  margin: 2.2rem 0 0.8rem;
   color: var(--color-theme);
 }
+
 .markdown-content h4 {
-  font-size: 1rem;
-  margin: 1rem 0 0.6rem;
+  font-size: clamp(1.4rem, 1.3vw, 1.6rem);
+  margin: 1.6rem 0 0.6rem;
 }
+
 .markdown-content p {
-  margin-bottom: 7rem;
+  margin-bottom: 1.6rem;
 }
+
 .markdown-content ul,
 .markdown-content ol {
-  margin: 0.8rem 0 0.8rem 1.8rem;
+  margin: 0.8rem 0 1.6rem 2rem;
 }
+
 .markdown-content li {
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.6rem;
 }
+
 .markdown-content code {
   background: var(--color-dark);
-  padding: 0.2rem 0.4rem;
-  border-radius: 4px;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.4rem;
   font-size: 0.9em;
+  word-break: break-word;
 }
+
 .markdown-content pre {
   background: var(--color-darkest);
-  padding: 1.2rem;
-  border-radius: 8px;
+  padding: 1.2rem 1.6rem;
+  border-radius: 0.8rem;
   overflow-x: auto;
-  margin: 1.5rem 0;
+  margin: 1.6rem 0;
 }
+
 .markdown-content pre code {
   background: none;
   padding: 0;
 }
+
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 1.6rem 0 2rem;
+  border-radius: 0.8rem;
+  border: 0.1rem solid var(--color-dark);
+}
+
 .markdown-content table {
   width: 100%;
+  min-width: 44rem;
   border-collapse: collapse;
-  margin: 1.5rem 0;
-  font-size: 1.2rem;
+  margin: 0;
+  font-size: clamp(1.2rem, 1.1vw, 1.3rem);
 }
+
 .markdown-content th,
 .markdown-content td {
-  border: 1px solid var(--color-dark);
-  padding: 0.8rem;
+  border: 0.1rem solid var(--color-dark);
+  padding: 1rem 1.4rem;
   text-align: left;
 }
+
 .markdown-content th {
   background: var(--color-dark);
   font-weight: 600;
 }
+
 .markdown-content blockquote {
-  border-left: 3px solid var(--color-theme);
-  padding-left: 1rem;
-  margin: 1.5rem 0;
+  border-left: 0.3rem solid var(--color-theme);
+  padding-left: 1.2rem;
+  margin: 1.6rem 0;
   color: var(--color-medium);
   font-style: italic;
 }
+
 .markdown-content strong {
   font-weight: 600;
 }
+
 .markdown-content em {
   font-style: italic;
 }
 
 /* Responsive para learn */
-@media (max-width: 900px) {
+@media (max-width: 90rem) {
   .learn {
     grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 1.6rem;
   }
+
   .learn-sidebar {
     position: static;
     max-height: none;
     border-right: none;
-    border-bottom: 1px solid var(--color-dark);
-    padding-bottom: 1.5rem;
+    border-bottom: 0.1rem solid var(--color-dark);
+    padding-bottom: 1.6rem;
     margin-bottom: 2rem;
     padding-right: 0;
   }
+
   .learn-sidebar nav {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
+    gap: 0.6rem;
   }
+
   .sidebar-link {
-    font-size: 1.2rem;
-    padding: 0.4rem 0.8rem;
+    font-size: 1.3rem;
+    padding: 0.6rem 1rem;
   }
 }
 
-/* Page-learn overrides: force left-aligned layout */
+/* Page-learn overrides: force full-width container */
 .page-learn #root {
   width: 100%;
   max-width: none;
   text-align: left;
-}
-
-.page-learn .app {
-  align-items: flex-start;
-  justify-content: flex-start;
 }

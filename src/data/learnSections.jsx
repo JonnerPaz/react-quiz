@@ -57,9 +57,7 @@ export const learnSections = [
         <p>
           Una aplicación React es un árbol de componentes cuya raíz se conecta
           al DOM real a través de un único nodo (
-          <code>
-            <div id="root"></div>
-          </code>
+          <code>{'<div id="root"></div>'}</code>
           ).
         </p>
       </>
@@ -147,38 +145,40 @@ export const learnSections = [
           </li>
         </ul>
         <h3>Mecanismos de comunicación</h3>
-        <table>
-          <thead>
-            <tr>
-              <th>Dirección</th>
-              <th>Mecanismo</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Padre → hijo</td>
-              <td>Props</td>
-            </tr>
-            <tr>
-              <td>Hijo → padre</td>
-              <td>Funciones callback recibidas por props</td>
-            </tr>
-            <tr>
-              <td>Entre hermanos</td>
-              <td>Lifting state up: el estado se sube al ancestro común</td>
-            </tr>
-            <tr>
-              <td>Contenido anidado</td>
-              <td>
-                Prop special <code>children</code>
-              </td>
-            </tr>
-            <tr>
-              <td>Entre componentes lejanos</td>
-              <td>Contexto / estado global</td>
-            </tr>
-          </tbody>
-        </table>
+        <div className="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Dirección</th>
+                <th>Mecanismo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Padre → hijo</td>
+                <td>Props</td>
+              </tr>
+              <tr>
+                <td>Hijo → padre</td>
+                <td>Funciones callback recibidas por props</td>
+              </tr>
+              <tr>
+                <td>Entre hermanos</td>
+                <td>Lifting state up: el estado se sube al ancestro común</td>
+              </tr>
+              <tr>
+                <td>Contenido anidado</td>
+                <td>
+                  Prop special <code>children</code>
+                </td>
+              </tr>
+              <tr>
+                <td>Entre componentes lejanos</td>
+                <td>Contexto / estado global</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
         <h3>Lifting state up</h3>
         <p>
           Cuando dos componentes necesitan compartir información, esta se eleva
@@ -448,37 +448,39 @@ export const learnSections = [
           inmanejables por el prop drilling.
         </p>
         <h3>Clasificación del estado</h3>
-        <table>
-          <thead>
-            <tr>
-              <th>Tipo</th>
-              <th>Ejemplo</th>
-              <th>Dónde vive</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Local</td>
-              <td>un input, un menú</td>
-              <td>en el componente</td>
-            </tr>
-            <tr>
-              <td>Compartido</td>
-              <td>datos entre hermanos</td>
-              <td>en el ancestro común</td>
-            </tr>
-            <tr>
-              <td>Global</td>
-              <td>sesión, tema, carrito</td>
-              <td>en un almacén centralizado</td>
-            </tr>
-            <tr>
-              <td>Del servidor</td>
-              <td>listas traídas de la API</td>
-              <td>en una caché (React Query)</td>
-            </tr>
-          </tbody>
-        </table>
+        <div className="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Tipo</th>
+                <th>Ejemplo</th>
+                <th>Dónde vive</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Local</td>
+                <td>un input, un menú</td>
+                <td>en el componente</td>
+              </tr>
+              <tr>
+                <td>Compartido</td>
+                <td>datos entre hermanos</td>
+                <td>en el ancestro común</td>
+              </tr>
+              <tr>
+                <td>Global</td>
+                <td>sesión, tema, carrito</td>
+                <td>en un almacén centralizado</td>
+              </tr>
+              <tr>
+                <td>Del servidor</td>
+                <td>listas traídas de la API</td>
+                <td>en una caché (React Query)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
         <h3>Soluciones</h3>
         <ul>
           <li>
@@ -626,37 +628,39 @@ export const learnSections = [
           existente para volverlo interactivo.
         </p>
         <h3>Estrategias de renderizado</h3>
-        <table>
-          <thead>
-            <tr>
-              <th>Estrategia</th>
-              <th>Cuándo se genera el HTML</th>
-              <th>Uso ideal</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>CSR</td>
-              <td>En el navegador</td>
-              <td>Aplicaciones privadas, dashboards</td>
-            </tr>
-            <tr>
-              <td>SSR</td>
-              <td>En el servidor, por cada petición</td>
-              <td>Contenido dinámico y personalizado con SEO</td>
-            </tr>
-            <tr>
-              <td>SSG</td>
-              <td>En tiempo de compilación (build)</td>
-              <td>Contenido estático (blogs, documentación)</td>
-            </tr>
-            <tr>
-              <td>ISR</td>
-              <td>Estático con regeneración periódica</td>
-              <td>Contenido que cambia con poca frecuencia</td>
-            </tr>
-          </tbody>
-        </table>
+        <div className="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Estrategia</th>
+                <th>Cuándo se genera el HTML</th>
+                <th>Uso ideal</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>CSR</td>
+                <td>En el navegador</td>
+                <td>Aplicaciones privadas, dashboards</td>
+              </tr>
+              <tr>
+                <td>SSR</td>
+                <td>En el servidor, por cada petición</td>
+                <td>Contenido dinámico y personalizado con SEO</td>
+              </tr>
+              <tr>
+                <td>SSG</td>
+                <td>En tiempo de compilación (build)</td>
+                <td>Contenido estático (blogs, documentación)</td>
+              </tr>
+              <tr>
+                <td>ISR</td>
+                <td>Estático con regeneración periódica</td>
+                <td>Contenido que cambia con poca frecuencia</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
         <p>
           <strong>Ventajas del SSR:</strong> mejor SEO, menor tiempo hasta el
           primer contenido visible y mejor experiencia en dispositivos lentos.
