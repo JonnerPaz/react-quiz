@@ -1,16 +1,13 @@
-import { useEffect, useReducer, useState } from 'react'
-import Button from '@/components/NextButton'
-import Main from '@/components/Main'
+import { useEffect, useReducer } from 'react'
 import StartScreen from '@/components/StartScreen'
 import Progress from '@/components/Progress'
 import Question from '@/components/Question'
-import Options from '@/components/Option'
 import Loader from '@/components/Loader'
-import Header from '@/components/Header'
-
-// these constants are important states for the app
-// represent the lifecycle of the app
-// If you need to edit them, please do so with care
+import Error from '@/components/Error'
+import Footer from '@/components/Footer'
+import Timer from '@/components/Timer'
+import NextButton from '@/components/NextButton'
+import FinishScreen from '@/components/FinishScreen'
 
 const STATUSES = {
   loading: 0,
@@ -27,27 +24,22 @@ const REDUCER_TYPES = {
   newAnswer: 'newAnswer',
   nextQuestion: 'nextQuestion',
   finish: 'finish',
+  restart: 'restart',
+  tick: 'tick',
 }
 
 const SECONDS_PER_QUESTION = 30
+
 const initialState = {
   questions: [],
-  // 'loading', 'error', 'ready', 'active', 'finished'
   status: STATUSES.loading,
   index: 0,
   answer: null,
   points: 0,
-  highscore: 0,
+  highscore: Number(localStorage.getItem('react_quiz_highscore')) || 0,
   secondsRemaining: null,
 }
 
-// @type StateType = typeof initialState
-
-/**
- * @param state {{questions: string[], status: keyof typeof STATUSES, index: number, answer: number | null, points: number, highscore: number, secondsRemaining: number | null}}
- * @param action {{type: keyof typeof REDUCER_TYPES, payload: number}}
- * @description - Reducer function for useReducer. **This is the heart of the app**
- */
 function reducer(state, action) {
   switch (action.type) {
     case REDUCER_TYPES.dataReceived:
@@ -64,36 +56,143 @@ function reducer(state, action) {
         status: STATUSES.active,
         secondsRemaining: state.questions.length * SECONDS_PER_QUESTION,
       }
+    case REDUCER_TYPES.newAnswer: {
+      const question = state.questions[state.index]
+      return {
+        ...state,
+        answer: action.payload,
+        points:
+          action.payload === question.correctOption
+            ? state.points + question.points
+            : state.points,
+      }
+    }
+    case REDUCER_TYPES.nextQuestion:
+      return {
+        ...state,
+        index: state.index + 1,
+        answer: null,
+      }
+    case REDUCER_TYPES.finish: {
+      const newHighscore = Math.max(state.points, state.highscore)
+      localStorage.setItem('react_quiz_highscore', String(newHighscore))
+      return {
+        ...state,
+        status: STATUSES.finished,
+        highscore: newHighscore,
+      }
+    }
+    case REDUCER_TYPES.restart:
+      return {
+        ...initialState,
+        questions: state.questions,
+        status: STATUSES.ready,
+        highscore: state.highscore,
+      }
+    case REDUCER_TYPES.tick: {
+      const isFinished = state.secondsRemaining <= 1
+      const newHighscore = isFinished
+        ? Math.max(state.points, state.highscore)
+        : state.highscore
+      if (isFinished) {
+        localStorage.setItem('react_quiz_highscore', String(newHighscore))
+      }
+      return {
+        ...state,
+        secondsRemaining: state.secondsRemaining - 1,
+        status: isFinished ? STATUSES.finished : state.status,
+        highscore: newHighscore,
+      }
+    }
     default:
-      throw new Error('unknown action')
+      throw new Error(`Unknown action: ${action.type}`)
   }
 }
 
 function Quiz() {
-  const [{ questions, status }, dispatch] = useReducer(reducer, initialState)
-  const maxPossibleQuestions = questions.reduce(
+  const [
+    { questions, status, index, answer, points, highscore, secondsRemaining },
+    dispatch,
+  ] = useReducer(reducer, initialState)
+
+  const maxPossiblePoints = questions.reduce(
     (prev, curr) => prev + curr.points,
     0
   )
 
   useEffect(() => {
-    fetch('http://localhost:3001/questions')
-      .then((res) => res.json())
-      .then((data) =>
-        dispatch({ type: REDUCER_TYPES.dataReceived, payload: data })
-      )
-      .catch((err) => dispatch({ type: REDUCER_TYPES.dataFailed }))
+    let isMounted = true
+
+    async function loadQuestions() {
+      try {
+        const res = await fetch('http://localhost:3001/questions')
+        if (!res.ok) throw new Error('API server unavailable')
+        const data = await res.json()
+        if (isMounted) {
+          dispatch({ type: REDUCER_TYPES.dataReceived, payload: data })
+        }
+      } catch {
+        // Fallback to local questions.json if API server is offline
+        try {
+          const local = await import('../../data/questions.json')
+          if (isMounted) {
+            const data = local.default?.questions || local.questions || []
+            dispatch({ type: REDUCER_TYPES.dataReceived, payload: data })
+          }
+        } catch {
+          if (isMounted) {
+            dispatch({ type: REDUCER_TYPES.dataFailed })
+          }
+        }
+      }
+    }
+
+    loadQuestions()
+    return () => {
+      isMounted = false
+    }
   }, [])
 
   return (
-    <div className="App">
-      <Button />
-      {/* If the server is not on, the loading screen will take forever */}
-      {status === STATUSES.loading && <Main children={<Loader />} />}
+    <div className="quiz-container">
+      {status === STATUSES.loading && <Loader />}
+      {status === STATUSES.error && <Error />}
       {status === STATUSES.ready && (
         <StartScreen numQuestions={questions.length} dispatch={dispatch} />
       )}
-      {/* TODO: The active state is the one missing. Please implement it */}
+      {status === STATUSES.active && (
+        <>
+          <Progress
+            index={index}
+            numOfQuestions={questions.length}
+            points={points}
+            maxPossiblePoints={maxPossiblePoints}
+            answer={answer}
+          />
+          <Question
+            question={questions[index]}
+            dispatch={dispatch}
+            answer={answer}
+          />
+          <Footer>
+            <Timer dispatch={dispatch} secondsRemaining={secondsRemaining} />
+            <NextButton
+              dispatch={dispatch}
+              answer={answer}
+              index={index}
+              numOfQuestions={questions.length}
+            />
+          </Footer>
+        </>
+      )}
+      {status === STATUSES.finished && (
+        <FinishScreen
+          points={points}
+          maxPossiblePoints={maxPossiblePoints}
+          highscore={highscore}
+          dispatch={dispatch}
+        />
+      )}
     </div>
   )
 }
