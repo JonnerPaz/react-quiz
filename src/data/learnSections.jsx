@@ -5,61 +5,58 @@ export const learnSections = [
     content: (
       <>
         <p>
-          React es una biblioteca de JavaScript para construir interfaces de
-          usuario, creada por Meta (Facebook) en 2013 y de código abierto. Sigue
-          un enfoque declarativo: el desarrollador describe cómo debe verse la
-          interfaz según el estado actual y React se encarga de actualizar el
-          DOM. Esto contrasta con el enfoque imperativo de JavaScript puro,
-          donde se indica paso a paso cómo manipular cada elemento.
+          React es una biblioteca de JavaScript de código abierto creada por
+          Meta en 2013 para diseñar interfaces de usuario. Su enfoque es
+          declarativo: describes cómo debe verse la interfaz según el estado
+          actual y React actualiza el DOM de forma automática, a diferencia del
+          enfoque imperativo de JavaScript puro.
         </p>
-        <p>
-          React no es un framework completo, sino una biblioteca centrada en la
-          capa de vista. Por eso necesita herramientas complementarias:
-        </p>
-        <h3>Entorno de ejecución</h3>
-        <p>Node.js y un gestor de paquetes (npm, yarn o pnpm).</p>
-        <h3>Empaquetador (bundler)</h3>
-        <p>
-          Transforma el código moderno (JSX, módulos ES) en código que entiende
-          el navegador. Hoy la herramienta recomendada es Vite, por su arranque
-          rápido y su recarga en caliente (HMR). Su antecesor, Create React App,
-          quedó obsoleto.
-        </p>
-        <h3>Estructura conceptual del proyecto</h3>
-        <ul>
-          <li>
-            <strong>public/</strong>: recursos estáticos que se sirven sin
-            procesar.
-          </li>
-          <li>
-            <strong>src/components/</strong>: piezas de interfaz reutilizables.
-          </li>
-          <li>
-            <strong>src/pages/</strong>: vistas asociadas a rutas.
-          </li>
-          <li>
-            <strong>src/hooks/</strong>: lógica reutilizable extraída de los
-            componentes.
-          </li>
-          <li>
-            <strong>main.jsx</strong>: punto de entrada, donde React se "monta"
-            sobre un nodo del DOM.
-          </li>
-          <li>
-            <strong>App.jsx</strong>: componente raíz, del que cuelga todo el
-            árbol de componentes.
-          </li>
-          <li>
-            <strong>package.json</strong>: manifiesto con dependencias y
-            scripts.
-          </li>
-        </ul>
         <p>
           Una aplicación React es un árbol de componentes cuya raíz se conecta
           al DOM real a través de un único nodo (
           <code>{'<div id="root"></div>'}</code>
-          ).
+          ). Al ser una biblioteca centrada en la capa de vista y no un
+          framework completo, requiere herramientas complementarias:
         </p>
+        <h3>Entorno de ejecución</h3>
+        <p>
+          Node.js para ejecutar Vite y un gestor de paquetes (npm, yarn o pnpm).
+        </p>
+        <h3>Empaquetador (Bundler)</h3>
+        <p>
+          Herramienta como Vite que compila código moderno (JSX, módulos ES)
+          para los navegadores, ofreciendo un arranque rápido y recarga en
+          caliente (HMR).
+        </p>
+        <h3>Comandos</h3>
+        <p>Para crear un proyecto nuevo mediante la línea de comandos:</p>
+        <pre>
+          <code>pnpm create vite moz-todo --template react</code>
+        </pre>
+        <p>
+          Este comando genera el directorio del proyecto y descarga las
+          dependencias necesarias.
+        </p>
+        <p>Para iniciar el servidor de desarrollo local:</p>
+        <pre>
+          <code>pnpm dev</code>
+        </pre>
+        <h3>Estructura de directorios</h3>
+        <pre>{`moz-todo/
+├── node_modules/       # Dependencias instaladas
+├── public/             # Archivos estáticos públicos (ej. logos)
+│   └── vite.svg
+├── src/                # Código fuente de la aplicación
+│   ├── assets/         # Recursos locales (imágenes, fuentes)
+│   ├── App.css         # Estilos específicos del componente App
+│   ├── App.jsx         # Componente principal (raíz de la interfaz)
+│   ├── index.css       # Estilos CSS globales
+│   └── main.jsx        # Punto de entrada que conecta React con el HTML
+├── .gitignore          # Archivos ignorados por Git
+├── index.html          # Página HTML principal
+├── package.json        # Configuración, scripts y dependencias
+├── pnpm-lock.yaml      # Historial de versiones del gestor de paquetes
+└── vite.config.js      # Configuración de Vite`}</pre>
       </>
     ),
   },
@@ -69,11 +66,10 @@ export const learnSections = [
     content: (
       <>
         <p>
-          <strong>Componente.</strong> Es la unidad fundamental de React: una
-          pieza independiente, reutilizable y autocontenida que encapsula
-          estructura, lógica y comportamiento. Conceptualmente es una función
-          que recibe datos y devuelve una descripción de interfaz. Esta idea se
-          resume en la fórmula:
+          Los componentes son la unidad fundamental de React: una pieza
+          independiente, reutilizable y autocontenida que encapsula estructura,
+          lógica y comportamiento para cumplir un propósito específico.
+          Conceptualmente, funciona bajo la fórmula:
         </p>
         <pre>
           <code>UI = f(estado)</code>
@@ -82,42 +78,46 @@ export const learnSections = [
           La interfaz es el resultado de aplicar una función al estado actual de
           la aplicación.
         </p>
-        <h3>Composición</h3>
-        <p>
-          React favorece la composición sobre la herencia: las interfaces
-          complejas se construyen combinando componentes pequeños, de modo que
-          la aplicación entera es un componente formado por otros.
-        </p>
+        <h3>Principios clave</h3>
+        <ul>
+          <li>
+            <strong>Composición:</strong> React favorece la composición sobre la
+            herencia. Las interfaces complejas se construyen combinando
+            componentes pequeños.
+          </li>
+          <li>
+            <strong>Funciones de JavaScript:</strong> Los componentes son
+            funciones que devuelven código JSX.
+          </li>
+          <li>
+            <strong>Nomenclatura:</strong> Sus nombres deben empezar siempre en
+            mayúscula (PascalCase).
+          </li>
+        </ul>
         <h3>JSX</h3>
         <p>
           Es una extensión de sintaxis de JavaScript que permite escribir
-          marcado dentro del código. No es HTML ni es obligatorio, pero es lo
-          habitual. El compilador lo transforma en llamadas a funciones que
-          crean elementos de React (objetos que describen la interfaz). Sus
-          reglas se derivan de que en realidad es JavaScript:
+          marcado dentro del código. El compilador lo transforma en llamadas que
+          crean elementos de React. Sus reglas principales son:
         </p>
         <ul>
           <li>
-            Todo componente devuelve un único elemento raíz o un fragmento.
+            Todo componente debe devolver un único elemento raíz o un fragmento.
           </li>
           <li>
-            Los atributos usan nomenclatura de JavaScript (
-            <code>className</code>, <code>htmlFor</code>) porque{' '}
-            <code>class</code> y <code>for</code> son palabras reservadas.
+            Los atributos usan la nomenclatura de JavaScript (por ejemplo,{' '}
+            <code>className</code> en lugar de <code>class</code>).
           </li>
           <li>
-            Las expresiones se insertan entre llaves <code>{}</code>.
+            Las expresiones se integran utilizando llaves <code>{}</code>.
           </li>
           <li>
-            Los nombres de componentes empiezan con mayúscula para distinguirlos
-            de las etiquetas HTML.
+            La renderización condicional y de listas se maneja directamente con
+            JavaScript (operadores lógicos, ternarios y <code>map</code>).
           </li>
           <li>
-            La renderización condicional y las listas se resuelven con
-            JavaScript (operadores lógicos, ternarios, <code>map</code>), no con
-            directivas propias. Cada elemento de una lista necesita un atributo{' '}
-            <code>key</code> que permita a React identificarlo entre
-            renderizados.
+            Cada elemento de una lista requiere un atributo <code>key</code>
+            único para su identificación.
           </li>
         </ul>
       </>

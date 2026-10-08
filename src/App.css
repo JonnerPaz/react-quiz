@@ -471,6 +471,7 @@ progress {
 
 .learn-section {
   margin-bottom: 3.6rem;
+  scroll-margin-top: 10rem;
 }
 
 .learn-section h2 {
