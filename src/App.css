@@ -92,16 +92,16 @@ h3 {
 }
 
 h4 {
-  font-size: 2.2rem;
+  font-size: 1.5 rem;
   font-weight: 600;
-  margin-bottom: 2.4rem;
+  margin-bottom: 0.5rem;
 }
 
 .quiz-container {
   width: 100%;
   max-width: 60rem;
   margin: 0 auto;
-  padding: clamp(1.6rem, 3vw, 3.2rem) 1.6rem;
+  padding: clamp(0.5rem, 1.5vw, 1rem) 1.2rem;
   display: flex;
   flex-direction: column;
 }
@@ -126,12 +126,12 @@ h4 {
 }
 
 .progress {
-  margin-bottom: 4rem;
+  margin-bottom: 1.2rem;
   display: grid;
   justify-content: space-between;
-  gap: 1.2rem;
+  gap: 0.5rem;
   grid-template-columns: auto auto;
-  font-size: clamp(1.5rem, 1.3vw, 1.8rem);
+  font-size: clamp(1.3rem, 1.1vw, 1.5rem);
   color: var(--color-medium);
 }
 
@@ -156,18 +156,18 @@ progress {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  margin-top: 2rem;
-  gap: 1.2rem;
+  margin-top: 1rem;
+  gap: 0.8rem;
 }
 
 .btn {
   display: block;
   font-family: inherit;
   color: inherit;
-  font-size: 2rem;
+  font-size: 1.5rem;
   border: 2px solid var(--color-dark);
   background-color: var(--color-dark);
-  padding: 1.2rem 2.4rem;
+  padding: 0.7rem 1.4rem;
   cursor: pointer;
   border-radius: 100px;
   transition: 0.3s;
@@ -192,8 +192,8 @@ progress {
 .options {
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
-  margin-bottom: 3.2rem;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
 }
 
 .btn-option {
@@ -251,10 +251,10 @@ progress {
 }
 
 .timer {
-  font-size: clamp(1.5rem, 1.2vw, 1.8rem);
+  font-size: clamp(1rem, 0.9vw, 1.2rem);
   color: var(--color-medium);
-  border: 0.2rem solid var(--color-dark);
-  padding: 1.2rem 2.4rem;
+  border: 0.15rem solid var(--color-dark);
+  padding: 0.5rem 1rem;
   border-radius: 10rem;
 }
 
@@ -325,9 +325,8 @@ progress {
   display: flex;
   gap: 1.2rem;
   justify-content: center;
-  padding: 1rem 0;
+  padding: 1rem;
   border-bottom: 1px solid var(--color-dark);
-  margin-bottom: 2rem;
   position: sticky;
   top: 7rem;
   z-index: 99;
@@ -435,18 +434,19 @@ progress {
 
 .learn-sidebar {
   position: sticky;
-  top: 12rem;
+  top: 7rem;
   height: fit-content;
-  max-height: calc(100vh - 14rem);
+  max-height: calc(100vh - 10rem);
   overflow-y: auto;
   border-right: 0.1rem solid var(--color-dark);
   padding-right: 1.6rem;
+  z-index: 98;
 }
 
 .sidebar-link {
   display: block;
-  padding: 0.8rem 1.2rem;
-  font-size: clamp(1.2rem, 1.1vw, 1.4rem);
+  padding: 0.5rem 0.5rem;
+  font-size: 1rem;
   line-height: 1.4;
   color: var(--color-medium);
   text-decoration: none;
@@ -481,32 +481,35 @@ progress {
 }
 
 .markdown-content {
-  font-size: clamp(1.3rem, 1.1vw, 1.5rem);
+  font-size: 1rem;
   line-height: 1.7;
   color: var(--color-light);
 }
 
 .markdown-content h3 {
-  font-size: clamp(1.6rem, 1.5vw, 1.9rem);
+  font-size: 1.5rem;
   margin: 2.2rem 0 0.8rem;
   color: var(--color-theme);
 }
 
 .markdown-content h4 {
-  font-size: clamp(1.4rem, 1.3vw, 1.6rem);
+  font-size: 1.3rem;
   margin: 1.6rem 0 0.6rem;
 }
 
 .markdown-content p {
+  font-size: 1rem;
   margin-bottom: 1.6rem;
 }
 
 .markdown-content ul,
 .markdown-content ol {
+  font-size: 1rem;
   margin: 0.8rem 0 1.6rem 2rem;
 }
 
 .markdown-content li {
+  font-size: 1rem;
   margin-bottom: 0.6rem;
 }
 
@@ -589,20 +592,20 @@ progress {
     max-height: none;
     border-right: none;
     border-bottom: 0.1rem solid var(--color-dark);
-    padding-bottom: 1.6rem;
-    margin-bottom: 2rem;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
     padding-right: 0;
   }
 
   .learn-sidebar nav {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.6rem;
+    gap: 0.3rem;
   }
 
   .sidebar-link {
     font-size: 1.3rem;
-    padding: 0.6rem 1rem;
+    padding: 0.5rem 0.5rem;
   }
 }
 
